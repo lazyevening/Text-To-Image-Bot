@@ -37,8 +37,9 @@ public class Baotou extends TelegramLongPollingBot {
             File downloadFile = downloadPhoto(filePath);
             System.out.println("downloadedFilePath: " + downloadFile);
             try {
+                assert downloadFile != null;
                 BufferedImage image = ImageIO.read(downloadFile);
-                ImageProcessor.textToImage(image, "ВО СКОЛЬКО ЗАБИВ?");
+                    ImageProcessor.textToImage(image, "ВО СКОЛЬКО ЗАБИВ?");
                 ImageIO.write(image, "jpg", new File(downloadFile + ""));
             } catch (IOException e){
                 System.out.println(":(((((");
