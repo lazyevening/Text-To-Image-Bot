@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ImageProcessor {
-    public static BufferedImage textToImage(BufferedImage image, String text){
+    public static void textToImage(BufferedImage image, String text){
         System.out.println(image.getHeight() + " " + image.getHeight());
         Font font = new Font("Arial", Font.BOLD, (int)(image.getHeight() + image.getHeight()) / 35);
         Graphics g = image.getGraphics();
@@ -12,6 +12,5 @@ public class ImageProcessor {
         g.setFont(font);
         g.setColor(Color.WHITE);
         g.drawString(text, positionX, positionY);
-        return image;
     }
 }

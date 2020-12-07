@@ -4,11 +4,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class Main {
     public static void main(String[] args) {
         ApiContextInitializer.init();
-
         TelegramBotsApi botsApi = new TelegramBotsApi();
-
         try {
-            botsApi.registerBot(new Baotou());
+            botsApi.registerBot(new Bot());
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
