@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class Session {
     ArrayList<String> messages;
-    String username;
     BufferedImage image;
     File file;
+    int state;
 
-    Session(String username, BufferedImage image){
-        this.username = username;
+    Session(int state){
+        this.state = state;
         this.messages = new ArrayList<>();
-        this.image = image;
     }
 }
