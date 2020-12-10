@@ -150,5 +150,5 @@ public class Bot extends TelegramLongPollingBot {
 
     public String getBotUsername () { return "Image_With_Text_Bot"; }
 
-    public String getBotToken () { return "1464489153:AAHt2g6OgyYuvQQ9LPT12IZDH1QYCzJaoqo"; }
+    public String getBotToken () { return ""; }
 }
