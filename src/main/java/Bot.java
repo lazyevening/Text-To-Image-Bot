@@ -20,7 +20,7 @@ public class Bot extends TelegramLongPollingBot {
         long chat_id = update.getMessage().getChatId();
 
         if (!Users.containsKey(chat_id)){
-            Users.put(chat_id, new Session(0));
+            Users.put(chat_id, new Session(1));
         }
         int cond = Users.get(chat_id).state;
 
