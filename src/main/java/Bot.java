@@ -43,7 +43,7 @@ public class Bot extends TelegramLongPollingBot {
                                 sendHelp(chat_id);
                                 break;
                             case "/creators":
-                                sendMessage(chat_id, "Два любителя ебланить");
+                                sendMessage(chat_id, "Очень умные люди и большие молодцы");
                                 break;
                             default:
                                 sendMessage(chat_id, "If you want to start over, press: /start");
@@ -85,7 +85,6 @@ public class Bot extends TelegramLongPollingBot {
 
     private void sendHelp(long chat_id){
         sendMessage(chat_id,
-                "Hello! Этот бот может обрабатывать изображения. \n\r" +
                         "Выберите одну из команд: \n\r" +
                         "/add_text - add your text on image; \n\r" +
                         "/start - wanna start over?; \n\r" +
@@ -151,5 +150,5 @@ public class Bot extends TelegramLongPollingBot {
 
     public String getBotUsername () { return "Image_With_Text_Bot"; }
 
-    public String getBotToken () { return ""; }
+    public String getBotToken () { return "1464489153:AAHt2g6OgyYuvQQ9LPT12IZDH1QYCzJaoqo"; }
 }
