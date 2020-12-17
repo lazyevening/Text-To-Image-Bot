@@ -1,3 +1,4 @@
+import org.glassfish.jersey.jaxb.internal.XmlCollectionJaxbProvider;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.Properties;
 
 public class Bot extends TelegramLongPollingBot {
     Map<Long, Session> Users = new HashMap<>();
@@ -150,5 +152,16 @@ public class Bot extends TelegramLongPollingBot {
 
     public String getBotUsername () { return "Image_With_Text_Bot"; }
 
-    public String getBotToken () { return ""; }
+    public String getBotToken () {
+        Properties prop = new Properties();
+        try {
+            prop.load(XmlCollectionJaxbProvider.App.class.getClassLoader().getResourceAsStream("config.properties"));
+
+            return prop.getProperty("token");
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }
