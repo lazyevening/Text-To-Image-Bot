@@ -16,7 +16,6 @@ import java.util.Properties;
 
 public class Bot extends TelegramLongPollingBot {
     Map<Long, Session> Users = new HashMap<>();
-
     @Override
     public void onUpdateReceived(Update update) {
         long chat_id = update.getMessage().getChatId();
@@ -36,19 +35,18 @@ public class Bot extends TelegramLongPollingBot {
                     if (update.getMessage().hasText()) {
                         String message_text = update.getMessage().getText();
                         switch (message_text) {
-                            case "/add_text":
+                            case Constants.ADD_TEXT_COMMAND:
                                 Users.get(chat_id).state = 2;
-                                sendMessage(chat_id,
-                                        "Отправьте изображение, на котором хотите разместить текст");
+                                sendMessage(chat_id, Constants.GET_IMAGE_MSG);
                                 break;
-                            case "/start":
+                            case Constants.START_COMMAND:
                                 sendHelp(chat_id);
                                 break;
-                            case "/creators":
-                                sendMessage(chat_id, "Очень умные люди и большие молодцы");
+                            case Constants.CREATORS_COMMAND:
+                                sendMessage(chat_id, Constants.CREATORS_MSG);
                                 break;
                             default:
-                                sendMessage(chat_id, "If you want to start over, press: /start");
+                                sendMessage(chat_id, Constants.ERROR_MSG);
                                 break;
                         }
                     }
@@ -57,9 +55,9 @@ public class Bot extends TelegramLongPollingBot {
                     if (update.getMessage().hasPhoto()) {
                         setPhoto(chat_id, update);
                         Users.get(chat_id).state = 3;
-                        sendMessage(chat_id, "Отправьте текст для размещения");
+                        sendMessage(chat_id, Constants.GET_TEXT_MSG);
                     } else {
-                        sendMessage(chat_id, "Отправьте изображение, на котором хотите разместить текст");
+                        sendMessage(chat_id, Constants.GET_IMAGE_MSG);
                     }
                     break;
                 case 3:
@@ -68,7 +66,7 @@ public class Bot extends TelegramLongPollingBot {
                         sendPhotoWithText(chat_id, text);
                         Users.get(chat_id).state = 1;
                         sendHelp(chat_id);
-                    } else sendMessage(chat_id, "Отправьте текст для размещения");
+                    } else sendMessage(chat_id, Constants.GET_TEXT_MSG);
                     break;
                 default:
                     break;
@@ -86,11 +84,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private void sendHelp(long chat_id){
-        sendMessage(chat_id,
-                        "Выберите одну из команд: \n\r" +
-                        "/add_text - add your text on image; \n\r" +
-                        "/start - wanna start over?; \n\r" +
-                        "/creators - ^-^; \n\r");
+        sendMessage(chat_id, Constants.HELP_MSG);
     }
 
     private void sendMessage(long chat_id, String message_text){
