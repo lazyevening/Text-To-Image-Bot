@@ -25,7 +25,8 @@ public class RequestHandler {
 
         boolean isAdd = fsm.isState(State.WAIT_IMAGE);
         boolean isStart = fsm.isState(State.START);
-
+        if (input.equals("/fsmstate"))
+            return fsm.getCurrentState().toString();
         State prevState = fsm.getCurrentState();
         if (isStart){
             fsm.update();

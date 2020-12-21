@@ -19,6 +19,11 @@ public class FSM {
 
     private void initTransitions(){
         transitionTable.addTransition(new Transition(State.ENTRY_POINT, Constants.START_COMMAND, State.START));
+        transitionTable.addTransition(new Transition(State.START, null, State.LISTEN));
+
+        transitionTable.addTransition(new Transition(State.LISTEN, Constants.ADD_TEXT_COMMAND, State.WAIT_IMAGE));
+        transitionTable.addTransition(new Transition(State.WAIT_IMAGE, null, State.WAIT_TEXT));
+
     }
 
     public void setState(State state){
