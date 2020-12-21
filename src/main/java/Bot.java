@@ -11,14 +11,25 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.*;
 import java.util.Properties;
 
-public class Bot extends TelegramLongPollingBot {
-    Map<Long, Session> Users = new HashMap<>();
+public class Bot extends TelegramLongPollingBot implements ISender{
+    private final RequestHandler requestHandler = new RequestHandler();
+    Map<Long, User> Users = new HashMap<>();
     @Override
     public void onUpdateReceived(Update update) {
-        long chat_id = update.getMessage().getChatId();
+        var answer = new SendMessage();
+        if (update.hasMessage()){
+            answer = handleMessage(update);
+            }
+        try {
+            execute(answer);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        /*long chat_id = update.getMessage().getChatId();
 
         if (!Users.containsKey(chat_id)){
             Users.put(chat_id, new Session(1));
@@ -70,8 +81,17 @@ public class Bot extends TelegramLongPollingBot {
                     break;
                 default:
                     break;
-            }
+            }*/
         }
+    private SendMessage handleMessage(Update update){
+        String message = update.getMessage().getText();
+        var answer = new SendMessage();
+        answer.setChatId(update.getMessage().getChatId());
+        String uid = update.getMessage().getFrom().getId().toString();
+        String result = requestHandler.handle(uid, update.getMessage().getChatId().toString(), message, this);
+        answer.setText(result);
+        return answer;
+    }
 
     private File downloadPhoto(String filePath) {
         try {
@@ -87,7 +107,7 @@ public class Bot extends TelegramLongPollingBot {
         sendMessage(chat_id, Constants.HELP_MSG);
     }
 
-    private void sendMessage(long chat_id, String message_text){
+    public void sendMessage(long chat_id, String message_text){
         SendMessage message = new SendMessage()
                 .setChatId(chat_id)
                 .setText(message_text);

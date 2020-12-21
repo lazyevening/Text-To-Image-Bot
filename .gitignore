@@ -2,4 +2,5 @@
 target/
 *.iml
 .idea/
+users.json
 src/main/resources/config.properties

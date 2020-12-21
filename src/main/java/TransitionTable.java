@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+
+/**
+ * Таблица переходов
+ */
+public class TransitionTable {
+    private final ArrayList<Transition> transitions = new ArrayList<>();
+
+    /**
+     * Добавляем переход
+     * @param transition переход
+     */
+    public void addTransition(Transition transition){
+        if(transition != null)
+            transitions.add(transition);
+    }
+
+    /**
+     * Возвращает конечное состояние по начальному состоянию и ключевому слову.
+     * Если же состояние не было найдено будет возвращен null.
+     * @param start начальное состояние
+     * @param key Ключевое слово
+     * @return конечное состояние
+     */
+    public State getEndState(State start, String key){
+        for (Transition transition : transitions) {
+            String m_key = transition.getKey();
+            State m_start = transition.getStartState();
+            State m_end = transition.getEndState();
+
+            if (key == null && m_start.equals(start) && m_key == null) {
+                return m_end;
+            } else if (m_key != null && m_start.equals(start) && m_key.equals(key)) {
+                return m_end;
+            }
+        }
+
+        return null;
+    }
+}
