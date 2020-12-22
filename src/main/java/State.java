@@ -3,7 +3,9 @@ public enum State {
     ENTRY_POINT(Constants.ENTRY_POINT_MSG),
     LISTEN(Constants.BOT_WAITING_COMMANDS),
     WAIT_IMAGE(Constants.GET_IMAGE_MSG),
-    WAIT_TEXT(Constants.GET_TEXT_MSG);
+    WAIT_TEXT(Constants.GET_TEXT_MSG),
+    READY_TO_GET(Constants.READY_TO_GET_MSG),
+    HELP(Constants.HELP_MSG);
 
     private final String state;
 
@@ -14,4 +16,5 @@ public enum State {
     public String getStateMessage(){
         return state;
     }
+
 }

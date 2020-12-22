@@ -3,7 +3,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class User {
-    BufferedImage image;
     File file;
     State state;
 

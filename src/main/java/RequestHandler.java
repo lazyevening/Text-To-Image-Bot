@@ -1,6 +1,8 @@
+import java.io.File;
+
 public class RequestHandler {
-    private Core core;
-    private FSM fsm = new FSM();
+    private final Core core;
+    private final FSM fsm = new FSM();
 
     public RequestHandler(){
         core = new Core();
@@ -20,22 +22,31 @@ public class RequestHandler {
         }
     }
 
-    public String handle(String uid, String chatId, String input, ISender sender){
+    public String handle(String uid, String chatId, String message, File file){
         updateFSMState(uid);
-
-        boolean isAdd = fsm.isState(State.WAIT_IMAGE);
+        boolean isWaitImage = fsm.isState(State.WAIT_IMAGE);
+        boolean isWaitText = fsm.isState(State.WAIT_TEXT);
         boolean isStart = fsm.isState(State.START);
-        if (input.equals("/fsmstate"))
-            return fsm.getCurrentState().toString();
-        State prevState = fsm.getCurrentState();
-        if (isStart){
-            fsm.update();
+        boolean isHelp = fsm.isState(State.HELP);
+        if (isWaitImage && file == null) return Constants.GET_IMAGE_MSG;
+        if (message.equals("/fsmstate")) return fsm.getCurrentState().toString();
+
+        if (isStart || isHelp) fsm.update();
+        fsm.update(message);
+
+        if (isWaitImage){
+            core.setImage(uid, file);
+        } else if (isWaitText){
+            core.putTextToPhoto(uid, message);
         }
-        fsm.update(input);
 
         String res = fsm.getCurrentState().getStateMessage();
         core.setUserFSMState(uid, fsm.getCurrentState());
 
         return res;
+    }
+
+    public File getPhoto(String user_id) {
+        return core.getUserPhoto(user_id);
     }
 }

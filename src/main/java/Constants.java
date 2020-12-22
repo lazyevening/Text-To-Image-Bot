@@ -4,9 +4,8 @@ public class Constants {
     public static final String CREATORS_COMMAND = "/creators";
     public static final String HELP_COMMAND = "/help";
     public static final String HELP_MSG = "Выберите одну из команд: \n\r" +
-                                          "/add_text - add your text on image \n\r" +
-                                          "/start - wanna start over? \r\n" +
-                                          "/creators - ^-^";
+                                          "/add_text - add your text on image";
+    public static final String GET_IMAGE_COMMAND = "/get";
     public static final String CREATORS_MSG = "Очень умные люди и большие молодцы";
     public static final String START_MSG = "Добавим текст на изображение. " + HELP_MSG;
     public static final String ENTRY_POINT_MSG = "press: /start";
@@ -14,4 +13,5 @@ public class Constants {
     public static final String GET_TEXT_MSG = "Отправьте текст для размещения";
     public static final String USERS_FILE = "users.json";
     public static final String BOT_WAITING_COMMANDS = "Введите одну из доступных комманд: " + HELP_COMMAND;
+    public static final String READY_TO_GET_MSG = "Изображение готово к экспорту: " + GET_IMAGE_COMMAND;
 }
