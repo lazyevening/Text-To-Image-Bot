@@ -56,6 +56,7 @@ public class Bot extends TelegramLongPollingBot{
             answer.setText(requestHandler.handle(
                     uid, update.getMessage().getChatId().toString(), "", getFile(update)));
         }
+        answer.setReplyMarkup(requestHandler.handleKeyboard(uid, update.getMessage().getText()));
         return answer;
     }
 

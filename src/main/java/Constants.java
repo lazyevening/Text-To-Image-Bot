@@ -14,4 +14,23 @@ public class Constants {
     public static final String USERS_FILE = "users.json";
     public static final String BOT_WAITING_COMMANDS = "Введите одну из доступных комманд: " + HELP_COMMAND;
     public static final String READY_TO_GET_MSG = "Изображение готово к экспорту: " + GET_IMAGE_COMMAND;
+
+    public static final String POSITION_MSG = "Выберете позицию текста";
+    public static final String POSITION_CENTER = "Center";
+    public static final String POSITION_LEFT = "Left";
+    public static final String POSITION_RIGHT = "Right";
+    public static final String POSITION_TOP = "Top";
+    public static final String POSITION_BOTTOM = "Bottom";
+
+    public static final String TOP_LEFT = POSITION_TOP + " " + POSITION_LEFT;
+    public static final String TOP_CENTER = POSITION_TOP + " " + POSITION_CENTER;
+    public static final String TOP_RIGHT = POSITION_TOP + " " + POSITION_RIGHT;
+
+    public static final String CENTER_LEFT = POSITION_CENTER + " " + POSITION_LEFT;
+    public static final String CENTER_CENTER = POSITION_CENTER + " " + POSITION_CENTER;
+    public static final String CENTER_RIGHT = POSITION_CENTER + " " + POSITION_RIGHT;
+
+    public static final String BOTTOM_LEFT = POSITION_BOTTOM + " " + POSITION_LEFT;
+    public static final String BOTTOM_CENTER = POSITION_BOTTOM + " " + POSITION_CENTER;
+    public static final String BOTTOM_RIGHT = POSITION_BOTTOM + " " + POSITION_RIGHT;
 }

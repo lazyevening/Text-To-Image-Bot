@@ -17,6 +17,18 @@ public class FSM {
         commands.add(Constants.START_COMMAND);
         commands.add(Constants.HELP_COMMAND);
         commands.add(Constants.GET_IMAGE_COMMAND);
+
+        commands.add(Constants.TOP_LEFT);
+        commands.add(Constants.TOP_CENTER);
+        commands.add(Constants.TOP_RIGHT);
+
+        commands.add(Constants.CENTER_LEFT);
+        commands.add(Constants.CENTER_CENTER);
+        commands.add(Constants.CENTER_RIGHT);
+
+        commands.add(Constants.BOTTOM_LEFT);
+        commands.add(Constants.BOTTOM_CENTER);
+        commands.add(Constants.BOTTOM_RIGHT);
     }
 
     private void initTransitions(){
@@ -26,8 +38,23 @@ public class FSM {
         transitionTable.addTransition(new Transition(State.LISTEN, Constants.ADD_TEXT_COMMAND, State.WAIT_IMAGE));
         transitionTable.addTransition(new Transition(State.WAIT_IMAGE, null, State.WAIT_TEXT));
 
-        transitionTable.addTransition(new Transition(State.WAIT_TEXT, null, State.READY_TO_GET));
+
+        transitionTable.addTransition(new Transition(State.WAIT_TEXT, null, State.WAIT_POSITION));
+
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.TOP_LEFT, State.READY_TO_GET));
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.TOP_CENTER, State.READY_TO_GET));
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.TOP_RIGHT, State.READY_TO_GET));
+
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.CENTER_CENTER, State.READY_TO_GET));
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.CENTER_LEFT, State.READY_TO_GET));
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.CENTER_RIGHT, State.READY_TO_GET));
+
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.BOTTOM_LEFT, State.READY_TO_GET));
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.BOTTOM_CENTER, State.READY_TO_GET));
+        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.BOTTOM_RIGHT, State.READY_TO_GET));
+
         transitionTable.addTransition(new Transition(State.READY_TO_GET, Constants.GET_IMAGE_COMMAND, State.LISTEN));
+
 
         transitionTable.addTransition(new Transition(State.LISTEN, Constants.HELP_COMMAND, State.HELP));
         transitionTable.addTransition(new Transition(State.HELP, null, State.LISTEN));

@@ -1,13 +1,17 @@
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.io.FileUtils;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class Core {
@@ -60,19 +64,37 @@ public class Core {
         }
         else { return null; }
     }
-    /*public void addPhoto(String user_id, String file_path){
-        File downloadFile = downloadFile(file_path);
-        users.get(user_id).image = ImageIO.read(file_path);
-    }*/
+
+    public ReplyKeyboardMarkup getPositionsKeyboard(){
+        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+        List<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        row.add(Constants.TOP_LEFT);
+        row.add(Constants.TOP_CENTER);
+        row.add(Constants.TOP_RIGHT);
+        keyboard.add(row);
+        row = new KeyboardRow();
+        row.add(Constants.CENTER_LEFT);
+        row.add(Constants.CENTER_CENTER);
+        row.add(Constants.CENTER_RIGHT);
+        keyboard.add(row);
+        row = new KeyboardRow();
+        row.add(Constants.BOTTOM_LEFT);
+        row.add(Constants.BOTTOM_CENTER);
+        row.add(Constants.BOTTOM_RIGHT);
+        keyboard.add(row);
+        keyboardMarkup.setKeyboard(keyboard);
+        return keyboardMarkup;
+    }
 
     public void setImage(String user_id, File file){
             users.get(user_id).file = file;
     }
 
-    public void putTextToPhoto(String user_id, String text) {
+    public void putTextToPhoto(String user_id) {
         try {
             BufferedImage image = ImageIO.read(users.get(user_id).file);
-            ImageProcessor.textToImage(image, text);
+            ImageProcessor.textToImage(image, users.get(user_id).text, users.get(user_id).textPosition);
             ImageIO.write(image, "jpg", new File(users.get(user_id).file.toString()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,5 +104,13 @@ public class Core {
 
     public File getUserPhoto(String user_id) {
         return users.get(user_id).file;
+    }
+
+    public void setUserText(String uid, String message) {
+        users.get(uid).text = message;
+    }
+
+    public void setUserTextPosition(String uid, String message) {
+        users.get(uid).textPosition = message;
     }
 }
