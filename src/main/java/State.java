@@ -6,7 +6,8 @@ public enum State {
     WAIT_TEXT(Constants.GET_TEXT_MSG),
     READY_TO_GET(Constants.READY_TO_GET_MSG),
     HELP(Constants.HELP_MSG),
-    WAIT_POSITION(Constants.POSITION_MSG);
+    WAIT_POSITION(Constants.POSITION_MSG),
+    WAIT_COLOR(Constants.COLOR_MSG);
 
     private final String state;
 

@@ -1,3 +1,6 @@
+import java.awt.*;
+import java.util.HashMap;
+
 public class Constants {
     public static final String ADD_TEXT_COMMAND = "/add_text";
     public static final String START_COMMAND = "/start";
@@ -21,7 +24,18 @@ public class Constants {
     public static final String POSITION_RIGHT = "Right";
     public static final String POSITION_TOP = "Top";
     public static final String POSITION_BOTTOM = "Bottom";
-
+    public static final String[] POSITIONS = {
+            POSITION_TOP + " " + POSITION_LEFT,
+            POSITION_TOP + " " + POSITION_CENTER,
+            POSITION_TOP + " " + POSITION_RIGHT,
+            POSITION_CENTER + " " + POSITION_LEFT,
+            POSITION_CENTER + " " + POSITION_CENTER,
+            POSITION_CENTER + " " + POSITION_RIGHT,
+            POSITION_BOTTOM + " " + POSITION_LEFT,
+            POSITION_BOTTOM + " " + POSITION_CENTER,
+            POSITION_BOTTOM + " " + POSITION_RIGHT
+    };
+    /*
     public static final String TOP_LEFT = POSITION_TOP + " " + POSITION_LEFT;
     public static final String TOP_CENTER = POSITION_TOP + " " + POSITION_CENTER;
     public static final String TOP_RIGHT = POSITION_TOP + " " + POSITION_RIGHT;
@@ -33,4 +47,27 @@ public class Constants {
     public static final String BOTTOM_LEFT = POSITION_BOTTOM + " " + POSITION_LEFT;
     public static final String BOTTOM_CENTER = POSITION_BOTTOM + " " + POSITION_CENTER;
     public static final String BOTTOM_RIGHT = POSITION_BOTTOM + " " + POSITION_RIGHT;
+
+    public static final String BLACK = "Black";
+    public static final String WHITE = "White";
+    public static final String GREY = "Grey";
+    public static final String RED = "Red";
+    public static final String GREEN = "Green";
+    public static final String BLUE = "Blue";
+    public static final String YELLOW = "Yellow";
+    public static final String PINK = "Pink";
+    public static final String MAGENTA = "Magenta";
+    */
+    public static final String COLOR_MSG = "Выберете цвет текста";
+    public static final String[] COLORS = {
+            "Black",
+            "White",
+            "Grey",
+            "Red",
+            "Green",
+            "Blue",
+            "Yellow",
+            "Pink",
+            "Magenta"
+    };
 }

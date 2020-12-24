@@ -1,8 +1,26 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 
 public class ImageProcessor {
-    public static void textToImage(BufferedImage image, String text, String position){
+    private static final HashMap<String, Color> colors = new HashMap<>();
+
+    private static void initColors(){
+        colors.put(Constants.COLORS[0], Color.BLACK);
+        colors.put(Constants.COLORS[1], Color.WHITE);
+        colors.put(Constants.COLORS[2], Color.GRAY);
+
+        colors.put(Constants.COLORS[3], Color.RED);
+        colors.put(Constants.COLORS[4], Color.GREEN);
+        colors.put(Constants.COLORS[5], Color.BLUE);
+
+        colors.put(Constants.COLORS[6], Color.YELLOW);
+        colors.put(Constants.COLORS[7], Color.PINK);
+        colors.put(Constants.COLORS[8], Color.MAGENTA);
+    }
+
+    public static void textToImage(BufferedImage image, String text, String position, String color){
+        initColors();
         System.out.println(image.getHeight() + " " + image.getHeight());
         Font font = new Font("Arial", Font.BOLD, (int)(image.getHeight() + image.getHeight()) / 35);
         Graphics g = image.getGraphics();
@@ -10,7 +28,7 @@ public class ImageProcessor {
         int positionX = defX(image, position, metrics.stringWidth(text));
         int positionY = defY(image, position, metrics);
         g.setFont(font);
-        g.setColor(Color.WHITE);
+        g.setColor(colors.get(color));
         g.drawString(text, positionX, positionY);
     }
 

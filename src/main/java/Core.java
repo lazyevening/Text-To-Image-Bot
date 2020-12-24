@@ -65,24 +65,19 @@ public class Core {
         else { return null; }
     }
 
-    public ReplyKeyboardMarkup getPositionsKeyboard(){
+    public ReplyKeyboardMarkup getKeyboard(String[] collection){
         ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
-        row.add(Constants.TOP_LEFT);
-        row.add(Constants.TOP_CENTER);
-        row.add(Constants.TOP_RIGHT);
-        keyboard.add(row);
-        row = new KeyboardRow();
-        row.add(Constants.CENTER_LEFT);
-        row.add(Constants.CENTER_CENTER);
-        row.add(Constants.CENTER_RIGHT);
-        keyboard.add(row);
-        row = new KeyboardRow();
-        row.add(Constants.BOTTOM_LEFT);
-        row.add(Constants.BOTTOM_CENTER);
-        row.add(Constants.BOTTOM_RIGHT);
-        keyboard.add(row);
+        int counter = 0;
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++){
+                row.add(collection[counter + j]);
+            }
+            counter += 3;
+            keyboard.add(row);
+            row = new KeyboardRow();
+        }
         keyboardMarkup.setKeyboard(keyboard);
         return keyboardMarkup;
     }
@@ -94,7 +89,8 @@ public class Core {
     public void putTextToPhoto(String user_id) {
         try {
             BufferedImage image = ImageIO.read(users.get(user_id).file);
-            ImageProcessor.textToImage(image, users.get(user_id).text, users.get(user_id).textPosition);
+            ImageProcessor.textToImage(
+                    image, users.get(user_id).text, users.get(user_id).textPosition, users.get(user_id).textColor);
             ImageIO.write(image, "jpg", new File(users.get(user_id).file.toString()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,5 +108,9 @@ public class Core {
 
     public void setUserTextPosition(String uid, String message) {
         users.get(uid).textPosition = message;
+    }
+
+    public void setUserColor(String uid, String message) {
+        users.get(uid).textColor = message;
     }
 }

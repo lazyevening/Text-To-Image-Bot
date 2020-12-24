@@ -29,6 +29,7 @@ public class RequestHandler {
         boolean isWaitImage = fsm.isState(State.WAIT_IMAGE);
         boolean isWaitText = fsm.isState(State.WAIT_TEXT);
         boolean isWaitPosition = fsm.isState(State.WAIT_POSITION);
+        boolean isWaitColor = fsm.isState(State.WAIT_COLOR);
         boolean isStart = fsm.isState(State.START);
         boolean isHelp = fsm.isState(State.HELP);
         if (isWaitImage && file == null) return Constants.GET_IMAGE_MSG;
@@ -43,6 +44,8 @@ public class RequestHandler {
             core.setUserText(uid, message);
         }else if (isWaitPosition) {
             core.setUserTextPosition(uid, message);
+        }else if (isWaitColor) {
+            core.setUserColor(uid, message);
             core.putTextToPhoto(uid);
         }
         String res = fsm.getCurrentState().getStateMessage();
@@ -51,15 +54,15 @@ public class RequestHandler {
         return res;
     }
 
-
-
     public File getPhoto(String user_id) {
         return core.getUserPhoto(user_id);
     }
 
     public ReplyKeyboard handleKeyboard(String uid, String text) {
         if(core.getUserFSMState(uid).equals(State.WAIT_POSITION))
-            return core.getPositionsKeyboard();
+            return core.getKeyboard(Constants.POSITIONS);
+        if(core.getUserFSMState(uid).equals(State.WAIT_COLOR))
+            return core.getKeyboard(Constants.COLORS);
         return null;
     }
 }

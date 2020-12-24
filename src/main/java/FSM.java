@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FSM {
     private final TransitionTable transitionTable = new TransitionTable();
@@ -18,17 +19,8 @@ public class FSM {
         commands.add(Constants.HELP_COMMAND);
         commands.add(Constants.GET_IMAGE_COMMAND);
 
-        commands.add(Constants.TOP_LEFT);
-        commands.add(Constants.TOP_CENTER);
-        commands.add(Constants.TOP_RIGHT);
-
-        commands.add(Constants.CENTER_LEFT);
-        commands.add(Constants.CENTER_CENTER);
-        commands.add(Constants.CENTER_RIGHT);
-
-        commands.add(Constants.BOTTOM_LEFT);
-        commands.add(Constants.BOTTOM_CENTER);
-        commands.add(Constants.BOTTOM_RIGHT);
+        commands.addAll(Arrays.asList(Constants.POSITIONS));
+        commands.addAll(Arrays.asList(Constants.COLORS));
     }
 
     private void initTransitions(){
@@ -41,17 +33,11 @@ public class FSM {
 
         transitionTable.addTransition(new Transition(State.WAIT_TEXT, null, State.WAIT_POSITION));
 
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.TOP_LEFT, State.READY_TO_GET));
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.TOP_CENTER, State.READY_TO_GET));
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.TOP_RIGHT, State.READY_TO_GET));
+        for (var position: Constants.POSITIONS)
+            transitionTable.addTransition(new Transition(State.WAIT_POSITION, position, State.WAIT_COLOR));
 
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.CENTER_CENTER, State.READY_TO_GET));
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.CENTER_LEFT, State.READY_TO_GET));
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.CENTER_RIGHT, State.READY_TO_GET));
-
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.BOTTOM_LEFT, State.READY_TO_GET));
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.BOTTOM_CENTER, State.READY_TO_GET));
-        transitionTable.addTransition(new Transition(State.WAIT_POSITION, Constants.BOTTOM_RIGHT, State.READY_TO_GET));
+        for (var color: Constants.COLORS)
+            transitionTable.addTransition(new Transition(State.WAIT_COLOR, color, State.READY_TO_GET));
 
         transitionTable.addTransition(new Transition(State.READY_TO_GET, Constants.GET_IMAGE_COMMAND, State.LISTEN));
 
