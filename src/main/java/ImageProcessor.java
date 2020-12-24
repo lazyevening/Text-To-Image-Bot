@@ -19,18 +19,29 @@ public class ImageProcessor {
         colors.put(Constants.COLORS[8], Color.MAGENTA);
     }
 
-    public static void textToImage(BufferedImage image, String text, String position, String color){
+    public static void textToImage(BufferedImage image, String text, String position, String color, boolean isRGB){
         initColors();
         System.out.println(image.getHeight() + " " + image.getHeight());
-        Font font = new Font("Arial", Font.BOLD, (int)(image.getHeight() + image.getHeight()) / 35);
+        Font font = new Font("Arial", Font.BOLD, (image.getWidth() + image.getHeight()) / 33);
         Graphics g = image.getGraphics();
         FontMetrics metrics = g.getFontMetrics(font);
         int positionX = defX(image, position, metrics.stringWidth(text));
         int positionY = defY(image, position, metrics);
         g.setFont(font);
-        g.setColor(colors.get(color));
+        g.setColor(getColor(color, isRGB));
         g.drawString(text, positionX, positionY);
     }
+
+    private static Color getColor(String color, boolean isRGB) {
+        if (isRGB)
+            return new Color(Integer.parseInt(color.split(" ")[0]),
+                    Integer.parseInt(color.split(" ")[1]),
+                    Integer.parseInt(color.split(" ")[2]));
+        else if (color != null)
+            return colors.get(color);
+        return Color.GRAY;
+    }
+
 
     private static int defX(BufferedImage image, String position, int textLength){
         position = position.split(" ")[1];

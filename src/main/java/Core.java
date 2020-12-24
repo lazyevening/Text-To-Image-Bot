@@ -9,10 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Core {
     private final String USERS_FILE;
@@ -71,9 +68,7 @@ public class Core {
         KeyboardRow row = new KeyboardRow();
         int counter = 0;
         for (var i = 0; i < 3; i++) {
-            for (var j = 0; j < 3; j++){
-                row.add(collection[counter + j]);
-            }
+            row.addAll(Arrays.asList(collection).subList(counter, 3 + counter));
             counter += 3;
             keyboard.add(row);
             row = new KeyboardRow();
@@ -87,10 +82,11 @@ public class Core {
     }
 
     public void putTextToPhoto(String user_id) {
+        User user = users.get(user_id);
         try {
             BufferedImage image = ImageIO.read(users.get(user_id).file);
             ImageProcessor.textToImage(
-                    image, users.get(user_id).text, users.get(user_id).textPosition, users.get(user_id).textColor);
+                    image, user.text, user.textPosition, user.textColor, user.isRGB);
             ImageIO.write(image, "jpg", new File(users.get(user_id).file.toString()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,5 +108,25 @@ public class Core {
 
     public void setUserColor(String uid, String message) {
         users.get(uid).textColor = message;
+        try{
+            users.get(uid).isRGB = (Integer.parseInt(message.split(" ")[0]) >= 0 &&
+                    Integer.parseInt(message.split(" ")[0]) <= 255 &&
+                    Integer.parseInt(message.split(" ")[1]) >= 0 &&
+                    Integer.parseInt(message.split(" ")[1]) <= 255 &&
+                    Integer.parseInt(message.split(" ")[2]) >= 0 &&
+                    Integer.parseInt(message.split(" ")
+                            [2]) <= 255);
+        } catch (NumberFormatException | IndexOutOfBoundsException e){
+            users.get(uid).isRGB = false;
+        }
+        if (Arrays.asList(Constants.COLORS).contains(message) || users.get(uid).isRGB)
+            users.get(uid).textColor = message;
+        else{
+            users.get(uid).textColor = null;
+        }
+    }
+
+    public String getUserTextColor(String uid) {
+        return users.get(uid).textColor;
     }
 }

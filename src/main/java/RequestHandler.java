@@ -30,6 +30,7 @@ public class RequestHandler {
         boolean isWaitText = fsm.isState(State.WAIT_TEXT);
         boolean isWaitPosition = fsm.isState(State.WAIT_POSITION);
         boolean isWaitColor = fsm.isState(State.WAIT_COLOR);
+        boolean isWaitRGB = fsm.isState(State.WAIT_RGB);
         boolean isStart = fsm.isState(State.START);
         boolean isHelp = fsm.isState(State.HELP);
         if (isWaitImage && file == null) return Constants.GET_IMAGE_MSG;
@@ -44,9 +45,14 @@ public class RequestHandler {
             core.setUserText(uid, message);
         }else if (isWaitPosition) {
             core.setUserTextPosition(uid, message);
-        }else if (isWaitColor) {
-            core.setUserColor(uid, message);
-            core.putTextToPhoto(uid);
+        }else if (isWaitColor || isWaitRGB) {
+            if (fsm.getCurrentState().equals(State.READY_TO_GET)){
+                core.setUserColor(uid, message);
+                if (core.getUserTextColor(uid) != null)
+                    core.putTextToPhoto(uid);
+                else
+                    fsm.setState(State.WAIT_RGB);
+            }
         }
         String res = fsm.getCurrentState().getStateMessage();
         core.setUserFSMState(uid, fsm.getCurrentState());

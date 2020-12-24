@@ -3,6 +3,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class User {
+    boolean isRGB;
     String textColor;
     String textPosition;
     String text;
