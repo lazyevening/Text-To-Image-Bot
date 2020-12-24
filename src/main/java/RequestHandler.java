@@ -10,10 +10,6 @@ public class RequestHandler {
         core = new Core();
     }
 
-    public RequestHandler(String path){
-        core = new Core(path);
-    }
-
     private void updateFSMState(String uid) {
         State userState = core.getUserFSMState(uid);
         if (userState == null) {
@@ -24,7 +20,7 @@ public class RequestHandler {
         }
     }
 
-    public String handle(String uid, String chatId, String message, File file){
+    public String handle(String uid, String message, File file){
         updateFSMState(uid);
         boolean isWaitImage = fsm.isState(State.WAIT_IMAGE);
         boolean isWaitText = fsm.isState(State.WAIT_TEXT);
@@ -64,11 +60,11 @@ public class RequestHandler {
         return core.getUserPhoto(user_id);
     }
 
-    public ReplyKeyboard handleKeyboard(String uid, String text) {
+    public ReplyKeyboard handleKeyboard(String uid) {
         if(core.getUserFSMState(uid).equals(State.WAIT_POSITION))
-            return core.getKeyboard(Constants.POSITIONS);
+            return Bot.getKeyboard(Constants.POSITIONS);
         if(core.getUserFSMState(uid).equals(State.WAIT_COLOR))
-            return core.getKeyboard(Constants.COLORS);
+            return Bot.getKeyboard(Constants.COLORS);
         return null;
     }
 }

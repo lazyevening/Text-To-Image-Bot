@@ -5,6 +5,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
@@ -51,12 +53,12 @@ public class Bot extends TelegramLongPollingBot{
         String uid = update.getMessage().getFrom().getId().toString();
         if (update.getMessage().hasText()) {
             answer.setText(requestHandler.handle(
-                     uid, update.getMessage().getChatId().toString(), update.getMessage().getText(),null));
+                     uid, update.getMessage().getText(),null));
         } else if (update.getMessage().hasPhoto()){
             answer.setText(requestHandler.handle(
-                    uid, update.getMessage().getChatId().toString(), "", getFile(update)));
+                    uid, "", getFile(update)));
         }
-        answer.setReplyMarkup(requestHandler.handleKeyboard(uid, update.getMessage().getText()));
+        answer.setReplyMarkup(requestHandler.handleKeyboard(uid));
         return answer;
     }
 
@@ -68,6 +70,21 @@ public class Bot extends TelegramLongPollingBot{
             System.out.println("download-error");
         }
         return null;
+    }
+
+    public static ReplyKeyboardMarkup getKeyboard(String[] collection){
+        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+        List<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        int counter = 0;
+        for (var i = 0; i < 3; i++) {
+            row.addAll(Arrays.asList(collection).subList(counter, 3 + counter));
+            counter += 3;
+            keyboard.add(row);
+            row = new KeyboardRow();
+        }
+        keyboardMarkup.setKeyboard(keyboard);
+        return keyboardMarkup;
     }
 
     public File getFile(Update update){

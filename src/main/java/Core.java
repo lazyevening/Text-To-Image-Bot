@@ -62,20 +62,7 @@ public class Core {
         else { return null; }
     }
 
-    public ReplyKeyboardMarkup getKeyboard(String[] collection){
-        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-        List<KeyboardRow> keyboard = new ArrayList<>();
-        KeyboardRow row = new KeyboardRow();
-        int counter = 0;
-        for (var i = 0; i < 3; i++) {
-            row.addAll(Arrays.asList(collection).subList(counter, 3 + counter));
-            counter += 3;
-            keyboard.add(row);
-            row = new KeyboardRow();
-        }
-        keyboardMarkup.setKeyboard(keyboard);
-        return keyboardMarkup;
-    }
+
 
     public void setImage(String user_id, File file){
             users.get(user_id).file = file;

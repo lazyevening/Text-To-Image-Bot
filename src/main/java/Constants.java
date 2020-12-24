@@ -10,7 +10,6 @@ public class Constants {
                                           "/add_text - add your text on image";
     public static final String GET_IMAGE_COMMAND = "/get";
     public static final String RGB_COMMAND = "/RGB";
-    public static final String CREATORS_MSG = "Очень умные люди и большие молодцы";
     public static final String START_MSG = "Привет! Добавим текст на изображение. " + HELP_MSG;
     public static final String ENTRY_POINT_MSG = "press: /start";
     public static final String GET_IMAGE_MSG = "Отправьте изображение, на котором хотите разместить текст";
