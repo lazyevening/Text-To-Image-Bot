@@ -6,8 +6,16 @@ import java.util.EnumMap;
 public class RequestHandler {
     private final Core core;
     private final FSM fsm = new FSM();
+    private final EnumMap<State, Command> stateToCommand = new EnumMap<>(State.class);
     public RequestHandler(){
         core = new Core();
+    }
+
+    private void initStateToCommandMap(){
+        stateToCommand.put(State.WAIT_IMAGE, new SetImage());
+        stateToCommand.put(State.WAIT_TEXT, new SetText());
+        stateToCommand.put(State.WAIT_POSITION, new SetPosition());
+        stateToCommand.put(State.WAIT_COLOR, new SetColor());
     }
 
     private void updateFSMState(String uid) {
@@ -21,38 +29,18 @@ public class RequestHandler {
     }
 
     public String handle(String uid, String message, File file){
+        initStateToCommandMap();
         updateFSMState(uid);
         State prevState = fsm.getCurrentState();
-        boolean isWaitImage = fsm.isState(State.WAIT_IMAGE);
-        boolean isWaitText = fsm.isState(State.WAIT_TEXT);
-        boolean isWaitPosition = fsm.isState(State.WAIT_POSITION);
-        boolean isWaitColor = fsm.isState(State.WAIT_COLOR);
-        boolean isWaitRGB = fsm.isState(State.WAIT_RGB);
-        if (isWaitImage && file == null) return Constants.GET_IMAGE_MSG;
-        if (message.equals("/fsmstate")) return fsm.getCurrentState().toString();
-
+        if (fsm.isState(State.WAIT_IMAGE) && file == null)
+            return Constants.GET_IMAGE_MSG;
         if (prevState.equals(State.START) || prevState.equals(State.HELP))
             fsm.update();
         fsm.update(message);
-
-        if (isWaitImage){
-            core.setImage(uid, file);
-        } else if (isWaitText){
-            core.setUserText(uid, message);
-        }else if (isWaitPosition) {
-            core.setUserTextPosition(uid, message);
-        }else if (isWaitColor || isWaitRGB) {
-            if (fsm.getCurrentState().equals(State.READY_TO_GET)){
-                core.setUserColor(uid, message);
-                if (core.getUserTextColor(uid) != null)
-                    core.putTextToPhoto(uid);
-                else
-                    fsm.setState(State.WAIT_RGB);
-            }
-        }
+        if (stateToCommand.containsKey(prevState))
+            stateToCommand.get(prevState).handle(uid, message, file, fsm);
         String res = fsm.getCurrentState().getStateMessage();
         core.setUserFSMState(uid, fsm.getCurrentState());
-
         return res;
     }
 
