@@ -38,7 +38,7 @@ public class RequestHandler {
             fsm.update();
         fsm.update(message);
         if (stateToCommand.containsKey(prevState))
-            stateToCommand.get(prevState).handle(uid, message, file, fsm);
+            stateToCommand.get(prevState).handle(uid, message, file, core, fsm);
         String res = fsm.getCurrentState().getStateMessage();
         core.setUserFSMState(uid, fsm.getCurrentState());
         return res;
