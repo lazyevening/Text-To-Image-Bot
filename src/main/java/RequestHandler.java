@@ -1,11 +1,11 @@
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 import java.io.File;
+import java.util.EnumMap;
 
 public class RequestHandler {
     private final Core core;
     private final FSM fsm = new FSM();
-
     public RequestHandler(){
         core = new Core();
     }
@@ -22,17 +22,17 @@ public class RequestHandler {
 
     public String handle(String uid, String message, File file){
         updateFSMState(uid);
+        State prevState = fsm.getCurrentState();
         boolean isWaitImage = fsm.isState(State.WAIT_IMAGE);
         boolean isWaitText = fsm.isState(State.WAIT_TEXT);
         boolean isWaitPosition = fsm.isState(State.WAIT_POSITION);
         boolean isWaitColor = fsm.isState(State.WAIT_COLOR);
         boolean isWaitRGB = fsm.isState(State.WAIT_RGB);
-        boolean isStart = fsm.isState(State.START);
-        boolean isHelp = fsm.isState(State.HELP);
         if (isWaitImage && file == null) return Constants.GET_IMAGE_MSG;
         if (message.equals("/fsmstate")) return fsm.getCurrentState().toString();
 
-        if (isStart || isHelp) fsm.update();
+        if (prevState.equals(State.START) || prevState.equals(State.HELP))
+            fsm.update();
         fsm.update(message);
 
         if (isWaitImage){
@@ -65,6 +65,6 @@ public class RequestHandler {
             return Bot.getKeyboard(Constants.POSITIONS);
         if(core.getUserFSMState(uid).equals(State.WAIT_COLOR))
             return Bot.getKeyboard(Constants.COLORS);
-        return null;
+        return Bot.getKeyboard(null);
     }
 }

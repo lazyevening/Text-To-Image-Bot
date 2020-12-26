@@ -62,8 +62,6 @@ public class Core {
         else { return null; }
     }
 
-
-
     public void setImage(String user_id, File file){
             users.get(user_id).file = file;
     }
