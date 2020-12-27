@@ -8,7 +8,7 @@ import statemachine.State;
 public class SetColor implements Command {
     @Override
     public void handle(String uid, String message, File file, Core core, FSM fsm) {
-        if (fsm.getCurrentState().equals(State.READY_TO_GET)){
+        if (fsm.getCurrentState().equals(State.WAIT_FILTER)){
             core.setUserColor(uid, message);
             if (core.getUserTextColor(uid) != null)
                 core.putTextToPhoto(uid);

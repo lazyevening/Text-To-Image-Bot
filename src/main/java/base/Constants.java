@@ -45,6 +45,7 @@ public class Constants {
             "Например ваша команда может выглядеть так: \n\r" +
             "255 255 255";
     public static final String[] COLORS = {
+            //TODO ЗАМЕНИТЬ НА ЭМОДЗИ
             "Black",
             "White",
             "Grey",
@@ -56,5 +57,28 @@ public class Constants {
             "Magenta"
     };
 
+    public static final String FILTER_MSG = "Выберете один из фильтров либо оставьте без изменений";
 
+    public static final String TO_GRAY_FILTER = "To gray";
+    public static final String TO_BLACK_WHITE = "To black white";
+    public static final String TO_NEGATIVE = "To negative";
+    public static final String ADD_CONTRAST = "Add contrast";
+    public static final String ADD_COLOR_NOISE = "add Color Noise";
+    public static final String ADD_CUBES = "Add Cubes";
+    public static final String ADD_SMOOTH = "Add Smooth";
+    public static final String QUALITY_KILLER = "Quality Killer";
+    public static final String NO_FILTER = "NO FILTER";
+
+
+    public static final String[] FILTERS = {
+            TO_GRAY_FILTER,
+            TO_BLACK_WHITE,
+            TO_NEGATIVE,
+            ADD_CONTRAST,
+            ADD_COLOR_NOISE,
+            ADD_CUBES,
+            ADD_SMOOTH,
+            QUALITY_KILLER,
+            NO_FILTER
+    };
 }

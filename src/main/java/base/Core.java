@@ -68,7 +68,7 @@ public class Core {
             users.get(user_id).file = file;
     }
 
-    public void putTextToPhoto(String user_id) {
+    public void putTextToPhoto(String user_id) { //TODO ПЕРЕМЕСТИТЬ В SetColor
         User user = users.get(user_id);
         try {
             BufferedImage image = ImageIO.read(users.get(user_id).file);

@@ -22,6 +22,9 @@ public class RequestHandler {
         stateToCommand.put(State.WAIT_TEXT, new SetText());
         stateToCommand.put(State.WAIT_POSITION, new SetPosition());
         stateToCommand.put(State.WAIT_COLOR, new SetColor());
+        stateToCommand.put(State.WAIT_RGB, new SetColor());
+        stateToCommand.put(State.WAIT_FILTER, new SetFilter());
+
     }
 
     private void updateFSMState(String uid) {
@@ -59,6 +62,8 @@ public class RequestHandler {
             return Bot.getKeyboard(Constants.POSITIONS);
         if(core.getUserFSMState(uid).equals(State.WAIT_COLOR))
             return Bot.getKeyboard(Constants.COLORS);
+        if(core.getUserFSMState(uid).equals(State.WAIT_FILTER))
+            return Bot.getKeyboard(Constants.FILTERS);
         return Bot.getKeyboard(null);
     }
 }

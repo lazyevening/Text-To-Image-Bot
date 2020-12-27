@@ -26,6 +26,7 @@ public class FSM {
 
         commands.addAll(Arrays.asList(Constants.POSITIONS));
         commands.addAll(Arrays.asList(Constants.COLORS));
+        commands.addAll(Arrays.asList(Constants.FILTERS));
     }
 
     private void initTransitions(){
@@ -41,10 +42,14 @@ public class FSM {
             transitionTable.addTransition(new Transition(State.WAIT_POSITION, position, State.WAIT_COLOR));
 
         for (var color: Constants.COLORS)
-            transitionTable.addTransition(new Transition(State.WAIT_COLOR, color, State.READY_TO_GET));
+            transitionTable.addTransition(new Transition(State.WAIT_COLOR, color, State.WAIT_FILTER));
+
+        for (var filter: Constants.FILTERS)
+            transitionTable.addTransition(new Transition(State.WAIT_FILTER, filter, State.READY_TO_GET));
+
 
         transitionTable.addTransition(new Transition(State.WAIT_COLOR, Constants.RGB_COMMAND, State.WAIT_RGB));
-        transitionTable.addTransition(new Transition(State.WAIT_RGB, null, State.READY_TO_GET));
+        transitionTable.addTransition(new Transition(State.WAIT_RGB, null, State.WAIT_FILTER));
 
         transitionTable.addTransition(new Transition(State.READY_TO_GET, Constants.GET_IMAGE_COMMAND, State.LISTEN));
 

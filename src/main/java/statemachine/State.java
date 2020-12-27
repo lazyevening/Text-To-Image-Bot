@@ -12,7 +12,8 @@ public enum State {
     HELP(Constants.HELP_MSG),
     WAIT_POSITION(Constants.POSITION_MSG),
     WAIT_COLOR(Constants.COLOR_MSG),
-    WAIT_RGB(Constants.RGB_MSG);
+    WAIT_RGB(Constants.RGB_MSG),
+    WAIT_FILTER(Constants.FILTER_MSG);
 
     private final String state;
 
