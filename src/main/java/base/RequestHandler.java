@@ -19,6 +19,7 @@ public class RequestHandler {
 
     private void initStateToCommandMap(){
         stateToCommand.put(State.WAIT_IMAGE, new SetImage());
+        stateToCommand.put(State.WAIT_IMAGE_FILTER, new SetImage());
         stateToCommand.put(State.WAIT_TEXT, new SetText());
         stateToCommand.put(State.WAIT_POSITION, new SetPosition());
         stateToCommand.put(State.WAIT_COLOR, new SetColor());
@@ -42,7 +43,9 @@ public class RequestHandler {
         updateFSMState(uid);
         State prevState = fsm.getCurrentState();
         if (fsm.isState(State.WAIT_IMAGE) && file == null)
-            return Constants.GET_IMAGE_MSG;
+            return Constants.GET_IMAGE_TEXT_MSG;
+        if (fsm.isState(State.WAIT_IMAGE_FILTER) && file == null)
+            return Constants.GET_IMAGE_FILTER_MSG; //TODO в отдельный метод
         if (prevState.equals(State.START) || prevState.equals(State.HELP))
             fsm.update();
         fsm.update(message);

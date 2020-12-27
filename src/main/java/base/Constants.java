@@ -8,13 +8,16 @@ public class Constants {
     public static final String START_COMMAND = "/start";
     public static final String CREATORS_COMMAND = "/creators";
     public static final String HELP_COMMAND = "/help";
+    public static final String ADD_FILTER_COMMAND = "/add_filter";
     public static final String HELP_MSG = "Выберите одну из команд: \n\r" +
-                                          "/add_text - add your text on image";
+                                          ADD_TEXT_COMMAND + " - добавить текст на изображение \n\r" +
+                                          ADD_FILTER_COMMAND + " - добавить фильтр на изображение";
+
     public static final String GET_IMAGE_COMMAND = "/get";
     public static final String RGB_COMMAND = "/RGB";
     public static final String START_MSG = "Привет! Добавим текст на изображение. " + HELP_MSG;
     public static final String ENTRY_POINT_MSG = "press: /start";
-    public static final String GET_IMAGE_MSG = "Отправьте изображение, на котором хотите разместить текст";
+    public static final String GET_IMAGE_TEXT_MSG = "Отправьте изображение, на котором хотите разместить текст";
     public static final String GET_TEXT_MSG = "Отправьте текст для размещения";
     public static final String USERS_FILE = "users.json";
     public static final String BOT_WAITING_COMMANDS = "Введите одну из доступных комманд: " + HELP_COMMAND;
@@ -81,4 +84,5 @@ public class Constants {
             QUALITY_KILLER,
             NO_FILTER
     };
+    public static final String GET_IMAGE_FILTER_MSG = "Отправьте изображение";
 }

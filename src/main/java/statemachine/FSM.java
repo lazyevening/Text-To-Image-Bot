@@ -23,6 +23,7 @@ public class FSM {
         commands.add(Constants.HELP_COMMAND);
         commands.add(Constants.GET_IMAGE_COMMAND);
         commands.add(Constants.RGB_COMMAND);
+        commands.add(Constants.ADD_FILTER_COMMAND);
 
         commands.addAll(Arrays.asList(Constants.POSITIONS));
         commands.addAll(Arrays.asList(Constants.COLORS));
@@ -34,6 +35,8 @@ public class FSM {
         transitionTable.addTransition(new Transition(State.START, null, State.LISTEN));
 
         transitionTable.addTransition(new Transition(State.LISTEN, Constants.ADD_TEXT_COMMAND, State.WAIT_IMAGE));
+        transitionTable.addTransition(new Transition(State.LISTEN, Constants.ADD_FILTER_COMMAND, State.WAIT_IMAGE_FILTER));
+        transitionTable.addTransition(new Transition(State.WAIT_IMAGE_FILTER, null, State.WAIT_FILTER));
         transitionTable.addTransition(new Transition(State.WAIT_IMAGE, null, State.WAIT_TEXT));
 
         transitionTable.addTransition(new Transition(State.WAIT_TEXT, null, State.WAIT_POSITION));
