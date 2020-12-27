@@ -1,4 +1,9 @@
+package commands;
+
 import java.io.File;
+import base.Core;
+import statemachine.FSM;
+import statemachine.State;
 
 public class SetColor implements Command {
     @Override

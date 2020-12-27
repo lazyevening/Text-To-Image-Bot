@@ -1,4 +1,10 @@
+package base;
+
+import commands.*;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
+import statemachine.FSM;
+import statemachine.State;
+import telegram.Bot;
 
 import java.io.File;
 import java.util.EnumMap;

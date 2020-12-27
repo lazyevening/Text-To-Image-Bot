@@ -1,3 +1,7 @@
+package statemachine;
+
+import base.Constants;
+
 public enum State {
     START(Constants.START_MSG),
     ENTRY_POINT(Constants.ENTRY_POINT_MSG),

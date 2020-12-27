@@ -1,8 +1,10 @@
+package base;
+
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import imagehandlers.ImageProcessor;
 import org.apache.commons.io.FileUtils;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+import statemachine.State;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

@@ -1,3 +1,7 @@
+package telegram;
+
+import base.Constants;
+import base.RequestHandler;
 import org.glassfish.jersey.jaxb.internal.XmlCollectionJaxbProvider;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;

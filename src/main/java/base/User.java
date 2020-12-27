@@ -1,6 +1,8 @@
-import java.awt.image.BufferedImage;
+package base;
+
+import statemachine.State;
+
 import java.io.File;
-import java.util.ArrayList;
 
 public class User {
     boolean isRGB;

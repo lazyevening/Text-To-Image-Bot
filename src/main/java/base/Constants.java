@@ -1,3 +1,5 @@
+package base;
+
 import java.awt.*;
 import java.util.HashMap;
 

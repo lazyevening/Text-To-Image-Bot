@@ -1,4 +1,4 @@
-# Text-To-Image-Bot
+# Text-To-Image-telegram.Bot
 
 ## Описание
 Бот умеет прикреплять текст на изображение.

@@ -1,3 +1,8 @@
+package commands;
+
+import base.Core;
+import statemachine.FSM;
+
 import java.io.File;
 
 public class SetImage implements Command {
