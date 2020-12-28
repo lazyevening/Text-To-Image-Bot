@@ -21,7 +21,7 @@ public class FilterSetter implements Command {
         filters.put(Constants.ADD_CONTRAST, new Contrast());
 
         filters.put(Constants.ADD_COLOR_NOISE, new ColorNoise());
-        filters.put(Constants.ADD_CUBES, new AddCubes());
+        filters.put(Constants.ADD_CUBES, new Cubes());
         filters.put(Constants.ADD_SMOOTH, new Surprise());
         filters.put(Constants.QUALITY_KILLER, new QualityKiller());
     }

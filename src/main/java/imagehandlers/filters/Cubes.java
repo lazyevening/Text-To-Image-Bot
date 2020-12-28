@@ -3,7 +3,7 @@ package imagehandlers.filters;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class AddCubes implements Filter {
+public class Cubes implements Filter {
     @Override
     public void handleImage(BufferedImage image) {
         for (int x = 0; x < image.getWidth(); x++) {
