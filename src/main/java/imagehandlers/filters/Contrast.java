@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Contrast implements Filter {
     @Override
-    public void handleImage(BufferedImage image) {
+    public BufferedImage handleImage(BufferedImage image) {
         int k = 20; //увеличение контрастности на 20%
         for (int x = 0; x < image.getWidth(); x++) {
             for (int y = 0; y < image.getHeight(); y++) {
@@ -27,5 +27,6 @@ public class Contrast implements Filter {
                 image.setRGB(x, y, new Color (red, green, blue).getRGB());
             }
         }
+        return image;
     }
 }

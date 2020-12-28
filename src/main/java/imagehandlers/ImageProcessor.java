@@ -30,14 +30,14 @@ public class ImageProcessor {
         Font font = new Font("Arial", Font.BOLD, (image.getWidth() + image.getHeight()) / 33);
         Graphics g = image.getGraphics();
         FontMetrics metrics = g.getFontMetrics(font);
-        int positionX = defX(image, position, metrics.stringWidth(text));
-        int positionY = defY(image, position, metrics);
+        int positionX = defX(image.getWidth(), position.split(" ")[1], metrics.stringWidth(text));
+        int positionY = defY(image.getHeight(), metrics.getHeight(),position.split(" ")[0], metrics.getAscent());
         g.setFont(font);
         g.setColor(getColor(color, isRGB));
         g.drawString(text, positionX, positionY);
     }
 
-    private static Color getColor(String color, boolean isRGB) {
+    public static Color getColor(String color, boolean isRGB) {
         if (isRGB)
             return new Color(Integer.parseInt(color.split(" ")[0]),
                     Integer.parseInt(color.split(" ")[1]),
@@ -48,27 +48,25 @@ public class ImageProcessor {
     }
 
 
-    private static int defX(BufferedImage image, String position, int textLength){
-        position = position.split(" ")[1];
+    public static int defX(int width, String position, int textLength){
         switch (position){
             case Constants.POSITION_LEFT:
                 return 0;
             case Constants.POSITION_RIGHT:
-                return image.getWidth() - textLength;
+                return width - textLength;
             default:
-                return (image.getWidth() - textLength) / 2;
+                return (width - textLength) / 2;
         }
     }
 
-    private static int defY(BufferedImage image, String position, FontMetrics metrics){
-        position = position.split(" ")[0];
+    public static int defY(int imageHeight, int metricsHeight, String position, int metricsAscent){
         switch (position){
             case Constants.POSITION_TOP:
-                return metrics.getAscent();
+                return metricsAscent;
             case Constants.POSITION_BOTTOM:
-                  return (image.getHeight() - metrics.getHeight()) + metrics.getAscent();
+                  return (imageHeight - metricsHeight) + metricsAscent;
             default:
-                return (image.getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
+                return (imageHeight - metricsHeight) / 2 + metricsAscent;
         }
     }
 }

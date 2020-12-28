@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class ColorNoise implements Filter {
     @Override
-    public void handleImage(BufferedImage image) {
+    public BufferedImage handleImage(BufferedImage image) {
         Random random = new Random();
         for (int x = 0; x < image.getWidth(); x++) {
             for (int y = 0; y < image.getHeight(); y++) {
@@ -23,5 +23,6 @@ public class ColorNoise implements Filter {
                 image.setRGB(x, y, new Color (Math.round(red / 2), Math.round(green/ 2), Math.round(blue / 2)).getRGB());
             }
         }
+        return image;
     }
 }

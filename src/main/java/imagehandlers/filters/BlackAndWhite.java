@@ -4,10 +4,12 @@ import imagehandlers.filters.Filter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 
 public class BlackAndWhite implements Filter {
     @Override
-    public void handleImage(BufferedImage image) {
+    public BufferedImage handleImage(BufferedImage image) {
+        var newmage = image.getSubimage(0, 0, image.getWidth(), image.getHeight());
         double separator = 255 / 0.8 / 2 * 3;
         for (int x = 0; x < image.getWidth(); x++)
             for (int y = 0; y < image.getHeight(); y++) {
@@ -19,5 +21,6 @@ public class BlackAndWhite implements Filter {
                     image.setRGB(x, y, 0x0);
                 }
             }
+        return image;
     }
 }
