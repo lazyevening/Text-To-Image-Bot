@@ -17,7 +17,7 @@ public class CubesTest {
     BufferedImage finishImage;
     @Before
     public void setup() throws IOException {
-        File file = new File("src\\test\\testImages\\testGray.jpg");
+        File file = new File("src\\test\\testImages\\gray.jpg");
         startImage = ImageIO.read(file);
         finishImage = new Cubes().handleImage(ImageIO.read(file));
     }
@@ -34,5 +34,14 @@ public class CubesTest {
     @Test
     public void theSameColor() {
         Assert.assertEquals(finishImage.getColorModel(), startImage.getColorModel());
+    }
+    
+    @Test
+    public void notTheSameColor() {
+        int finishX = finishImage.getWidth() / 2;
+        int finishY = finishImage.getHeight() / 2;
+        int startX = startImage.getWidth() / 2;
+        int startY = startImage.getHeight() / 2;
+        Assert.assertNotEquals(finishImage.getRGB(finishX, finishY), startImage.getRGB(startX, startY));
     }
 }
