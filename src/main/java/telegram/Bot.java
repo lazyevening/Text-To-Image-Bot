@@ -12,8 +12,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import com.vdurmont.emoji.EmojiParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,7 +88,8 @@ public class Bot extends TelegramLongPollingBot{
         KeyboardRow row = new KeyboardRow();
         int counter = 0;
         for (var i = 0; i < 3; i++) {
-            row.addAll(Arrays.asList(collection).subList(counter, 3 + counter));
+            for (var j = 0; j < 3; j++)
+                row.add(new KeyboardButton(collection[j + counter]));
             counter += 3;
             keyboard.add(row);
             row = new KeyboardRow();

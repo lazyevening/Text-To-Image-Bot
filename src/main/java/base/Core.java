@@ -68,17 +68,7 @@ public class Core {
             users.get(user_id).file = file;
     }
 
-    public void putTextToPhoto(String user_id) { //TODO ПЕРЕМЕСТИТЬ В SetColor
-        User user = users.get(user_id);
-        try {
-            BufferedImage image = ImageIO.read(users.get(user_id).file);
-            ImageProcessor.textToImage(
-                    image, user.text, user.textPosition, user.textColor, user.isRGB);
-            ImageIO.write(image, "jpg", new File(users.get(user_id).file.toString()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
 
     public File getUserPhoto(String user_id) {
@@ -115,5 +105,17 @@ public class Core {
 
     public String getUserTextColor(String uid) {
         return users.get(uid).textColor;
+    }
+
+    public String getUserText(String user_id) {
+        return users.get(user_id).text;
+    }
+
+    public String getUserTextPosition(String user_id) {
+        return users.get(user_id).textPosition;
+    }
+
+    public boolean getUserIsRgb(String user_id) {
+        return users.get(user_id).isRGB;
     }
 }

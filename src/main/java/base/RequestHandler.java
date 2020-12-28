@@ -45,15 +45,19 @@ public class RequestHandler {
         if (fsm.isState(State.WAIT_IMAGE) && file == null)
             return Constants.GET_IMAGE_TEXT_MSG;
         if (fsm.isState(State.WAIT_IMAGE_FILTER) && file == null)
-            return Constants.GET_IMAGE_FILTER_MSG; //TODO в отдельный метод
-        if (prevState.equals(State.START) || prevState.equals(State.HELP))
-            fsm.update();
+            return Constants.GET_IMAGE_FILTER_MSG;
+        ifVoidState(prevState);
         fsm.update(message);
         if (stateToCommand.containsKey(prevState))
             stateToCommand.get(prevState).handle(uid, message, file, core, fsm);
         String res = fsm.getCurrentState().getStateMessage();
         core.setUserFSMState(uid, fsm.getCurrentState());
         return res;
+    }
+
+    private void ifVoidState(State state){
+        if (state.equals(State.START) || state.equals(State.HELP))
+            fsm.update();
     }
 
     public File getPhoto(String user_id) {

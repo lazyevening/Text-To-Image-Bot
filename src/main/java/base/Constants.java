@@ -1,5 +1,7 @@
 package base;
 
+import com.vdurmont.emoji.EmojiParser;
+
 import java.awt.*;
 import java.util.HashMap;
 
@@ -48,16 +50,15 @@ public class Constants {
             "Например ваша команда может выглядеть так: \n\r" +
             "255 255 255";
     public static final String[] COLORS = {
-            //TODO ЗАМЕНИТЬ НА ЭМОДЗИ
-            "Black",
-            "White",
-            "Grey",
-            "Red",
-            "Green",
-            "Blue",
-            "Yellow",
-            "Pink",
-            "Magenta"
+            "⬛️",
+            "⬜️",
+            "\uD83D\uDFEB",
+            "\uD83D\uDFE5",
+            "\uD83D\uDFE9",
+            "\uD83D\uDFE6",
+            "\uD83D\uDFE8",
+            "\uD83D\uDFE7",
+            "\uD83D\uDFEA"
     };
 
     public static final String FILTER_MSG = "Выберете один из фильтров либо оставьте без изменений";

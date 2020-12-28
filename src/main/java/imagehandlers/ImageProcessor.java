@@ -1,6 +1,7 @@
 package imagehandlers;
 
 import base.Constants;
+import org.checkerframework.checker.units.qual.C;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,14 +13,14 @@ public class ImageProcessor {
     private static void initColors(){
         colors.put(Constants.COLORS[0], Color.BLACK);
         colors.put(Constants.COLORS[1], Color.WHITE);
-        colors.put(Constants.COLORS[2], Color.GRAY);
+        colors.put(Constants.COLORS[2], new Color(101, 35, 35));
 
         colors.put(Constants.COLORS[3], Color.RED);
         colors.put(Constants.COLORS[4], Color.GREEN);
         colors.put(Constants.COLORS[5], Color.BLUE);
 
         colors.put(Constants.COLORS[6], Color.YELLOW);
-        colors.put(Constants.COLORS[7], Color.PINK);
+        colors.put(Constants.COLORS[7], new Color(255,165,0));
         colors.put(Constants.COLORS[8], Color.MAGENTA);
     }
 
