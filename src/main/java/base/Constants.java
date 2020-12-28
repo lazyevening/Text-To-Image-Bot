@@ -15,7 +15,7 @@ public class Constants {
                                           ADD_TEXT_COMMAND + " - добавить текст на изображение \n\r" +
                                           ADD_FILTER_COMMAND + " - добавить фильтр на изображение";
 
-    public static final String GET_IMAGE_COMMAND = "/get";
+    public static final String GET_IMAGE_COMMAND = "/get_image";
     public static final String RGB_COMMAND = "/RGB";
     public static final String START_MSG = "Привет! Добавим текст на изображение. " + HELP_MSG;
     public static final String ENTRY_POINT_MSG = "press: /start";
@@ -63,13 +63,13 @@ public class Constants {
 
     public static final String FILTER_MSG = "Выберете один из фильтров либо оставьте без изменений";
 
-    public static final String TO_GRAY_FILTER = "To gray";
-    public static final String TO_BLACK_WHITE = "To black white";
-    public static final String TO_NEGATIVE = "To negative";
-    public static final String ADD_CONTRAST = "Add contrast";
-    public static final String ADD_COLOR_NOISE = "add Color Noise";
-    public static final String ADD_CUBES = "Add Cubes";
-    public static final String ADD_SMOOTH = "Add Smooth";
+    public static final String TO_GRAY_FILTER = "Gray";
+    public static final String TO_BLACK_WHITE = "Black&White";
+    public static final String TO_NEGATIVE = "Negative";
+    public static final String ADD_CONTRAST = "Contrast";
+    public static final String ADD_COLOR_NOISE = "Color Noise";
+    public static final String ADD_CUBES = "Cubes";
+    public static final String ADD_SMOOTH = "Surprise";
     public static final String QUALITY_KILLER = "Quality Killer";
     public static final String NO_FILTER = "NO FILTER";
 
