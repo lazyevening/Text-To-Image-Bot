@@ -1,4 +1,3 @@
-import imagehandlers.filters.Negative;
 import imagehandlers.filters.QualityKiller;
 import org.junit.Assert;
 import org.junit.Before;

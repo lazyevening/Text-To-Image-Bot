@@ -39,4 +39,19 @@ public class GrayTest {
         int startY = startImage.getHeight() / 2;
         Assert.assertEquals(finishImage.getRGB(finishX, finishY), startImage.getRGB(startX, startY));
     }
+    @Test
+    public void noColored() throws IOException {
+        finishImage = new Gray().handleImage(ImageIO.read(new File("src\\test\\testImages\\testColored.jpg")));
+        boolean greyIsEverywhere = true;
+        for (var x = 0; x < finishImage.getWidth(); x++)
+            for (var y = 0; y < finishImage.getHeight(); y++){
+                int argb = finishImage.getRGB(x, y);
+                int red = (argb >> 16) & 0xff;
+                int green = (argb >>  8) & 0xff;
+                int blue = (argb ) & 0xff;
+                if (red != green || red != blue)
+                    greyIsEverywhere = false;
+            }
+        Assert.assertTrue(greyIsEverywhere);
+    }
 }
