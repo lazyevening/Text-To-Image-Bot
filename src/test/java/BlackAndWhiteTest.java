@@ -32,7 +32,7 @@ public class BlackAndWhiteTest {
         File file2 = new File("src\\test\\testImages\\lightGray.jpg");
         startImage2 = ImageIO.read(file2);
         finishImage2 = new BlackAndWhite().handleImage(ImageIO.read(file2));
-        color2 = new Color(finishImage.getRGB(10, 10));
+        color2 = new Color(finishImage2.getRGB(10, 10));
     }
     @Test
     public void theSameWidth() {
@@ -48,4 +48,10 @@ public class BlackAndWhiteTest {
     public void correctColor() {
         Assert.assertEquals(0, color.getBlue());
     }
+
+    @Test
+    public void correctColor2() {
+        Assert.assertEquals(255, color2.getBlue());
+    }
 }
+
