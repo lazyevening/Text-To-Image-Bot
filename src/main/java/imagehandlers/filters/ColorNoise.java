@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class AddColorNoise implements Filter {
+public class ColorNoise implements Filter {
     @Override
     public void handleImage(BufferedImage image) {
         Random random = new Random();

@@ -18,13 +18,13 @@ public class RequestHandler {
     }
 
     private void initStateToCommandMap(){
-        stateToCommand.put(State.WAIT_IMAGE, new SetImage());
-        stateToCommand.put(State.WAIT_IMAGE_FILTER, new SetImage());
-        stateToCommand.put(State.WAIT_TEXT, new SetText());
-        stateToCommand.put(State.WAIT_POSITION, new SetPosition());
-        stateToCommand.put(State.WAIT_COLOR, new SetColor());
-        stateToCommand.put(State.WAIT_RGB, new SetColor());
-        stateToCommand.put(State.WAIT_FILTER, new SetFilter());
+        stateToCommand.put(State.WAIT_IMAGE, new ImageSetter());
+        stateToCommand.put(State.WAIT_IMAGE_FILTER, new ImageSetter());
+        stateToCommand.put(State.WAIT_TEXT, new TextSetter());
+        stateToCommand.put(State.WAIT_POSITION, new PositionSetter());
+        stateToCommand.put(State.WAIT_COLOR, new ColorSetter());
+        stateToCommand.put(State.WAIT_RGB, new ColorSetter());
+        stateToCommand.put(State.WAIT_FILTER, new FilterSetter());
 
     }
 

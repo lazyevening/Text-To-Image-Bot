@@ -3,7 +3,7 @@ package imagehandlers.filters;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class AddContrast implements Filter {
+public class Contrast implements Filter {
     @Override
     public void handleImage(BufferedImage image) {
         int k = 20; //увеличение контрастности на 20%

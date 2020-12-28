@@ -2,8 +2,6 @@ package commands;
 
 import base.Constants;
 import base.Core;
-import base.User;
-import imagehandlers.ImageProcessor;
 import imagehandlers.filters.*;
 import statemachine.FSM;
 
@@ -13,22 +11,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class SetFilter implements Command {
+public class FilterSetter implements Command {
     public static final HashMap<String, Filter> filters = new HashMap<>();
 
     private void initFilters() {
-        filters.put(Constants.TO_GRAY_FILTER, new ToGray());
-        filters.put(Constants.TO_BLACK_WHITE, new ToBlackWhite());
-        filters.put(Constants.TO_NEGATIVE, new ToNegative());
-        filters.put(Constants.ADD_CONTRAST, new AddContrast());
+        filters.put(Constants.TO_GRAY_FILTER, new Gray());
+        filters.put(Constants.TO_BLACK_WHITE, new BlackAndWhite());
+        filters.put(Constants.TO_NEGATIVE, new Negative());
+        filters.put(Constants.ADD_CONTRAST, new Contrast());
 
-        filters.put(Constants.ADD_COLOR_NOISE, new AddColorNoise());
+        filters.put(Constants.ADD_COLOR_NOISE, new ColorNoise());
         filters.put(Constants.ADD_CUBES, new AddCubes());
-        filters.put(Constants.ADD_SMOOTH, new AddSmooth());
+        filters.put(Constants.ADD_SMOOTH, new Surprise());
         filters.put(Constants.QUALITY_KILLER, new QualityKiller());
-
-
-
     }
 
     @Override

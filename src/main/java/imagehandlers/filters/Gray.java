@@ -2,7 +2,7 @@ package imagehandlers.filters;
 
 import java.awt.image.BufferedImage;
 
-public class ToGray implements Filter {
+public class Gray implements Filter {
     @Override
     public void handleImage(BufferedImage image) {
         for (int x = 0; x < image.getWidth(); ++x)

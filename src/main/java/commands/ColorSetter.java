@@ -11,7 +11,7 @@ import statemachine.State;
 
 import javax.imageio.ImageIO;
 
-public class SetColor implements Command {
+public class ColorSetter implements Command {
     @Override
     public void handle(String uid, String message, File file, Core core, FSM fsm) {
         if (fsm.getCurrentState().equals(State.WAIT_FILTER)){

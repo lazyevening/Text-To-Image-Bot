@@ -5,7 +5,7 @@ import imagehandlers.filters.Filter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class ToBlackWhite implements Filter {
+public class BlackAndWhite implements Filter {
     @Override
     public void handleImage(BufferedImage image) {
         double separator = 255 / 0.8 / 2 * 3;
